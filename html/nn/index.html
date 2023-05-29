@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>牛牛</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, minimal-ui" />
+
+    <style type="text/css">
+        .inpt {
+            height:42px;
+            width:12%;
+            outline:none;
+            border:1px solid #1AB6FF;
+            text-align: center;
+            font-size: 26px;
+        }
+        .marr {
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div style="text-align: center; margin-top: 100px">
+    <input id="text1" readonly="readonly" type="text" class="inpt marr"/>
+    <input id="text2" readonly="readonly" type="text" class="inpt marr"/>
+    <input id="text3" readonly="readonly" type="text" class="inpt marr"/>
+    <input id="text4" readonly="readonly" type="text" class="inpt marr"/>
+    <input id="text5" readonly="readonly" type="text" class="inpt"/>
+</div>
+
+<div style="text-align: center; margin-top: 50px; font-size: 30px; color: red" id="result"></div>
+
+
+<script type="text/javascript">
+    ;(function(exports){
+        var keyBoard = function(input, options){
+            var body = document.getElementsByTagName('body')[0];
+            var DIV_ID = options && options.divId || '__w_l_h_v_c_z_e_r_o_divid';
+
+            if(document.getElementById(DIV_ID)){
+                body.removeChild(document.getElementById(DIV_ID));
+            }
+            this.input = input;
+            this.el = document.createElement('div');
+
+            var self = this;
+            var zIndex = options && options.zIndex || 1000;
+            var width = options && options.width || '100%';
+            var height = options && options.height || '193px';
+            var fontSize = options && options.fontSize || '15px';
+            var backgroundColor = options && options.backgroundColor || '#fff';
+            var TABLE_ID = options && options.table_id || 'table_0909099';
+            var mobile = typeof orientation !== 'undefined';
+
+            this.el.id = DIV_ID;
+            this.el.style.position = 'absolute';
+            this.el.style.left = 0;
+            this.el.style.right = 0;
+            this.el.style.bottom = 0;
+            this.el.style.zIndex = zIndex;
+            this.el.style.width = width;
+            this.el.style.height = height;
+            this.el.style.backgroundColor = backgroundColor;
+
+            //样式
+            var cssStr = '<style type="text/css">';
+            cssStr += '#' + TABLE_ID + '{text-align:center;width:100%;height:193px;border-top:1px solid #CECDCE;background-color:#FFF;}';
+            cssStr += '#' + TABLE_ID + ' td{width:33%;border:1px solid #ddd;border-right:0;border-top:0;}';
+            if(!mobile){
+                cssStr += '#' + TABLE_ID + ' td:hover{background-color:#1FB9FF;color:#FFF;}';
+            }
+            cssStr += '</style>';
+
+            //table
+            var tableStr = '<table id="' + TABLE_ID + '" border="0" cellspacing="0" cellpadding="0">';
+            tableStr += '<tr><td>A</td><td>2</td><td>3</td></tr>';
+            tableStr += '<tr><td>4</td><td>5</td><td>6</td></tr>';
+            tableStr += '<tr><td>7</td><td>8</td><td>9</td></tr>';
+            tableStr += '<tr><td>10</td><td>J</td><td>Q</td></tr>';
+            tableStr += '<tr><td style="background-color:#D3D9DF;">清空</td>';
+            tableStr +=  '<td>K</td>';
+            tableStr += '<td style="background-color:#D3D9DF;">完成</td></tr>';
+            tableStr += '</table>';
+            this.el.innerHTML = cssStr +  tableStr;
+
+            function addEvent(e){
+                var ev = e || window.event;
+                var clickEl = ev.element || ev.target;
+                var value = clickEl.textContent || clickEl.innerText;
+                if(clickEl.tagName.toLocaleLowerCase() === 'td' && value !== "清空" && value !== "完成"){
+                    if(self.input){
+                        self.input.value = value;
+                    }
+                    if(options && options.input) {
+                        options.input();
+                    }
+                }else if(clickEl.tagName.toLocaleLowerCase() === 'td' && value === "完成"){
+                    body.removeChild(self.el);
+                    if(options && options.finish) {
+                        options.finish();
+                    }
+                }else if(clickEl.tagName.toLocaleLowerCase() === 'td' && value === "清空"){
+                    if (options && options.clear) {
+                        options.clear();
+                    } else {
+                        self.input.value = ''
+                    }
+                }
+            }
+
+            if(mobile){
+                this.el.ontouchstart = addEvent;
+            }else{
+                this.el.onclick = addEvent;
+            }
+            body.appendChild(this.el);
+
+        }
+
+        exports.KeyBoard = keyBoard;
+
+    })(window);
+</script>
+
+<script type="text/javascript">
+
+    (function(){
+        var result = document.getElementById("result");
+        var inputs = document.getElementsByClassName('inpt');
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].onclick = function(){
+                for (var j = 0; j < inputs.length; j++) {
+                    inputs[j].style.backgroundColor = '#FFF'
+                }
+                this.style.backgroundColor = '#D3D3D3'
+                new KeyBoard(this, {input: put, clear: clearAll, finish: nn});
+            };
+        }
+
+        var clearAll = function () {
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].value = '';
+            }
+            // 焦点到第一格
+            inputs[0].click();
+        }
+
+        var put = function() {
+            for (var i = 0; i < inputs.length; i++) {
+                if (!inputs[i].value) {
+                    // 自动点击为空的
+                    inputs[i].click();
+                    return;
+                }
+            }
+            nn();
+        }
+
+        var nn = function() {
+            //console.log(calc())
+            result.innerText = calc();
+        }
+
+        function calc() {
+            var list = [];
+            for (var i = 0; i < inputs.length; i++) {
+                var val = inputs[i].value
+                if (val) {
+                    if (val === 'J' || val === 'j') {
+                        val = 11
+                    } else if (val === 'Q' || val === 'q') {
+                        val = 12
+                    } else if (val === 'K' || val === 'k') {
+                        val = 13
+                    } else if (val === 'A' || val === 'a') {
+                        val = 1
+                    }
+                    list.push(Number(val))
+                }
+            }
+            if (list.length < inputs.length) {
+                return;
+            }
+            // 小于5的 (五小牛)
+            var lte5 = list.filter(s => s < 5);
+            if (lte5.length === 5) {
+                var sum = listSum(lte5);
+                if (sum < 10) {
+                    return "五小牛";
+                }
+            }
+            // 是否相同的数>=4 (炸弹)
+            if (maxSameSize(list) >= 4) {
+                return "炸弹";
+            }
+            // 大等于10的
+            var gte10 = list.filter(s => s >= 10);
+            if (gte10.length === 5) {
+                if (gte10.filter(s => s > 10).length === 5) {
+                    return "金牛";
+                }
+                if (gte10.filter(s => s === 10).length === 1) {
+                    return "银牛";
+                }
+                return "牛牛";
+            }
+            // 小于10的
+            var lt10 = list.filter(s => s < 10);
+            if (lt10.length === 1) {
+                return "牛" + lt10[0];
+            } else if (lt10.length === 2) {
+                var x = lt10[0] + lt10[1];
+                if (x === 10) {
+                    return "牛牛";
+                }
+                return "牛" + (x % 10);
+            } else if (lt10.length === 3) {
+                // 三张相加
+                var x = listSum(lt10);
+                if (x === 10) {
+                    return "牛牛";
+                }
+                // 其中两张相加=10
+                var y = x % 10;
+                if (lt10.indexOf(y) > -1) {
+                    return "牛" + y;
+                }
+                return "无牛，最大为：" + listMax(list);
+            } else if (lt10.length === 4) {
+                // 其中3张相加=10的倍数
+                var x = listSum(lt10);
+                var y = x % 10;
+                if (lt10.indexOf(y) > -1) {
+                    return "牛" + y;
+                }
+                // 其中两张相加=10
+                for (var i = 0; i < lt10.length - 1; i++) {
+                    for (var j = i + 1; j < lt10.length; j++) {
+                        if (lt10[i] + lt10[j] === 10) {
+                            var z = (x - 10) % 10;
+                            if (z === 0) {
+                                return "牛牛";
+                            }
+                            return "牛" + z;
+                        }
+                    }
+                }
+                return "无牛，最大为：" + listMax(list);
+            } else {
+                // 5张牌都小于10
+                var x  = listSum(lt10);;
+                var size = lt10.length;
+                var left = [];
+                for (var i = 0; i < size - 2; i++) {
+                    for (var j = i + 1; j < size - 1; j++) {
+                        for (var k = j + 1; k < size; k++) {
+                            var y = lt10[i] + lt10[j] + lt10[k];
+                            var z = (x - y) % 10;
+                            if (y === 10) {
+                                if (z === 0) {
+                                    return "牛牛";
+                                }
+                                left.push(z);
+                            }
+                        }
+                    }
+                }
+                if (left.length > 0) {
+                    return "牛" + listMax(left);
+                }
+                return "无牛，最大为：" + listMax(list);
+            }
+        }
+
+        function listSum(list) {
+            var x = 0;
+            list.forEach(s => x += s);
+            return x;
+        }
+
+        function listMax(list) {
+            var max = 0;
+            list.forEach(item => {
+                if (item > max) {
+                    max = item;
+                }
+            })
+            return max;
+        }
+
+        function maxSameSize(list) {
+            var json = {};
+            list.forEach(item => {
+                var v = json[item]
+                if (v) {
+                    json[item] = v + 1
+                } else {
+                    json[item] = 1
+                }
+            })
+            var max = 0;
+            for (var key in json) {
+                if (json[key] > max) {
+                    max = json[key]
+                }
+            }
+            //console.log(max, json)
+            return max;
+        }
+
+    })();
+</script>
+
+</body>
+</html>
