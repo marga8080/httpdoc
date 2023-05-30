@@ -190,8 +190,10 @@
         }
 
         var nn = function() {
-            //console.log(calc())
-            result.innerText = calc();
+            let result = calc();
+            if (result) {
+                result.innerText = result;
+            }
         }
 
         /**
