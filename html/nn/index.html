@@ -316,7 +316,7 @@
                         for (let k = j + 1; k < size; k++) {
                             let y = lt10[i] + lt10[j] + lt10[k];
                             let z = (x - y) % 10;
-                            if (y === 10) {
+                            if (y % 10 == 0) {
                                 if (z === 0) {
                                     return "牛牛";
                                 }
