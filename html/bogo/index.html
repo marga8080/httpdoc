@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>猴子排序</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, minimal-ui" />
+
+    <style type="text/css">
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        input[type="number"]{
+            -moz-appearance: textfield;
+        }
+        
+        .inpt {
+            height:36px;
+            width:100px;
+            outline:none;
+            border:1px solid #1AB6FF;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #1AB6FF;
+            color: white;
+            border: 0;
+            height: 40px;
+            width: 120px;
+            font-size: 18px;
+        }
+        .btn:hover {
+            background-color: #1B85EE;
+        }
+    </style>
+</head>
+<body>
+
+<div style="text-align: left; margin-top: 50px">
+    <input id="txt"  type="number" class="inpt" onchange="changeNum()"/>个随机数：
+    <span id="randomNum"></span>
+    <br/><br/>
+    <button class="btn" id="sortBtn" onclick="start()">开始</button>
+</div>
+
+<div style=" margin-top: 20px; font-size: 18px;display: none;" id="rn">
+    第<span id="resultNum" style="color: red">0</span>次
+</div>
+<div style="margin-top: 10px; font-size: 16px;" id="resultTxt">
+</div>
+
+<script type="text/javascript">
+    let input = document.getElementById("txt");
+    let randomNum = document.getElementById("randomNum");
+    let resultTxt = document.getElementById("resultTxt");
+    let rn = document.getElementById("rn");
+    let resultNum = document.getElementById("resultNum");
+    let sortBtn = document.getElementById("sortBtn");
+    let numList = [];
+    let sortNum = 0;
+    window.onload = function () {
+        input.value = 5;
+        changeNum();
+    }
+
+    function changeNum() {
+        sortNum = 0;
+        let len = Number(input.value);
+        if (len < 2) {
+            numList = [];
+            randomNum.innerText = ''
+            alert('请输入大于1的整数')
+            return;
+        }
+        while (true) {
+            numList = [];
+            for (let i = 0; i < len; i++) {
+                let x = Math.floor(Math.random() * len)
+                numList.push(x)
+            }
+            if (!checkOrder(numList)) { // 无序的随机数
+                //console.log(numList)
+                break;
+            }
+        }
+        randomNum.innerText = numList;
+        rn.style.display = 'none'
+        resultNum.innerText = '';
+        resultTxt.innerText = '';
+    }
+
+    function start() {
+        if (numList.length === 0) {
+            return;
+        }
+        sortBtn.innerText = '排序中...'
+        sortBtn.style.pointerEvents= 'none'
+        input.disabled = true
+        sortNum = 0
+        resultNum.innerText = '';
+        resultTxt.innerText = '';
+        // while (true) {
+        //     sortNum++;
+        //     let n = shuffle(numList);
+        //     console.log(n)
+        //     resultNum.innerText = sortNum;
+        //     resultTxt.innerText = sortNum + ": " + n + "\n"
+        //     if (checkOrder(n)) {
+        //         break
+        //     }
+        // }
+        var interval = setInterval(() => {
+            sortNum++;
+            if (sortNum === 1) {
+                rn.style.display = 'block'
+            }
+            let n = shuffle(numList);
+            resultNum.innerText = sortNum;
+            resultTxt.innerText += sortNum + ": " + n + "\n"
+            if (checkOrder(n)) {
+                clearInterval(interval)
+                sortBtn.innerText = '开始'
+                sortBtn.style.pointerEvents= 'auto'
+                input.disabled = false
+            }
+        }, 10);
+    }
+
+    // 洗牌函数
+    function shuffle(arr) {
+        let res = [...arr]
+        for (let i = arr.length - 1; i > 0; i--) {
+            let randomIndex = Math.floor(Math.random() * (i + 1))
+            let tmp = res[randomIndex]
+            res[randomIndex] = res[i]
+            res[i] = tmp
+        }
+        return res
+    }
+
+    // 校验是否
+    function checkOrder(arr) {
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[i - 1]) {
+                return false
+            }
+        }
+        return true;
+    }
+</script>
+
+</body>
+</html>
