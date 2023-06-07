@@ -16,8 +16,12 @@ var timer = null;
 function init() {
     lastFlipIndex= null;
     flipNum = 0
-    var timer = null;
+    if (timer) {
+        clearInterval(timer)
+    }
+    timer = null;
     $("#timeUsed").html("00:00")
+    $("#clickNum").html(0)
 }
 
 /**
@@ -97,7 +101,9 @@ function render(level) {
 }
 
 function flip(thisObj) {
-    flipNum++;
+    if ($(thisObj).attr("show") !== "true" && lastFlipIndex !== $(thisObj).attr("index")) {
+        flipNum++;
+    }
     // 判断和上次的翻面是否相同
     if (lastFlipIndex && $(thisObj).attr("group") === $("#img" + lastFlipIndex).attr("group") && lastFlipIndex !== $(thisObj).attr("index")) {
         $(thisObj).attr("show", "true");
@@ -133,7 +139,7 @@ function flip(thisObj) {
 
 function showResult(finish) {
     // 翻面次数
-    $("#clickNum").text(flipNum)
+    $("#clickNum").html(flipNum)
     // 计时
     if (flipNum === 1) {
         let count = 0;
