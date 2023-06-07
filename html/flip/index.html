@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>记忆翻牌</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, minimal-ui"/>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
+    <link type="text/css" rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+
+<div style="display: flex">
+    <div style="flex: 1;">
+        <div style="padding-left: 10px; ">
+            <span>难度：</span>
+            <select id="level" onchange="selectLevel()" style="width: 60px">
+                <option value="0">1级</option>
+                <option value="1" selected>2级</option>
+                <option value="2">3级</option>
+                <option value="3">4级</option>
+                <option value="4">5级</option>
+            </select>
+        </div>
+    </div>
+
+    <div style="flex: 2;">
+        <div style="text-align: right; padding-right: 10px; ">
+            <span>点击次数：</span>
+            <span id="clickNum">0</span>
+            <span style="margin-left: 20px">耗时：</span>
+            <span id="timeUsed">00:00</span>
+        </div>
+    </div>
+
+</div>
+
+<div>
+
+</div>
+
+<div class="flip-area">
+    <ul class="table" id="table">
+        <li>
+            <div></div>
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+            <div></div>
+        </li>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    window.onload = function () {
+        render(1)
+    }
+
+    function selectLevel() {
+        render($("#level").val())
+    }
+</script>
+
+</body>
+</html>
