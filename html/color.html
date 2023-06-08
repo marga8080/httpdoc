@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>统一着色</title>
+<style>
+  .num
+  {
+     padding: 28px 0;
+     border: 1px solid ;
+     cursor: pointer;
+  }
+  .new-game {
+     cursor: pointer;
+     text-decoration: underline;
+     color: #00bcd4;
+     font:bold 24px Georgia, serif;
+  }
+  #mess
+  {
+     width:480px;
+     padding:5px;
+     border:2px solid gray;
+     margin:0px;
+     font:bold 24px Georgia, serif;
+     color: #FF6600;
+  }
+</style>
+</head>
+<body>
+<div class="new-game"  onclick="newGame();">New Game</div><br/>
+<canvas id="myCanvas" width="500" height="500" style="border:3px double #996633;">
+</canvas><br/>
+<table cellpadding="0" cellspacing="20">
+<tbody><tr>
+<td width="60"><div id="c0" class="num" onclick="setColor(this);"></div></td>
+<td width="60"><div id="c1" class="num" onclick="setColor(this);"></div></td>
+<td width="60"><div id="c2" class="num" onclick="setColor(this);"></div></td>
+<td width="60"><div id="c3" class="num" onclick="setColor(this);"></div></td>
+<td width="60"><div id="c4" class="num" onclick="setColor(this);"></div></td>
+</tr>
+</tbody>
+</table><br/>
+<div id="mess"> </div><br/>
+<script type="text/javascript">
+   var canvas=document.getElementById('myCanvas');
+   ctx= canvas.getContext('2d');
+   var colors = ["Aquamarine","Blue","BlueViolet","Brown","Chartreuse","Chocolate","Cyan","DeepPink","Fuchsia ","Green","Orange","Purple","Red","SkyBlue","Yellow"];
+   var running = false;
+   var steps=0;
+   function shuffle(arr)    // 数组arr洗牌
+   {
+      for (var i = arr.length-1; i>=0; i--) 
+      {
+          var j = Math.floor(Math.random() * i);
+          var t=arr[i];
+          arr[i]=arr[j];
+          arr[j]=t;     
+      }
+   }
+   var colorNum=[];
+   for (var i=0;i<colors.length;i++)  colorNum[i]=i;
+   var options=[];
+   var blocks=[];  
+   function newGame()
+   {
+       shuffle(colorNum);
+       options=colorNum.slice(0,5);
+       for (var i=0;i<100;i++)
+          blocks[i]=options[Math.floor(Math.random()*5)];
+       running=true;
+       steps=0;
+       draw();
+       document.getElementById("c0").style.backgroundColor =colors[options[0]];
+       document.getElementById("c1").style.backgroundColor =colors[options[1]];
+       document.getElementById("c2").style.backgroundColor =colors[options[2]];      
+       document.getElementById("c3").style.backgroundColor =colors[options[3]];      
+       document.getElementById("c4").style.backgroundColor =colors[options[4]];
+       document.getElementById("mess").innerHTML ="Steps:"+steps+"/35";
+   }
+   function draw()
+   { 
+      for (var i=0;i<10;i++)
+      {
+          for (var j=0;j<10;j++)
+          {
+             ctx.fillStyle = colors[blocks[i*10+j]];
+             ctx.fillRect(j*50,i*50,50,50);
+          }
+      }
+      ctx.fillStyle ="rgba(255,255,255,0.85)";
+      ctx.fillRect(20,20,10,10);
+   }
+   function setColor(d)
+   {
+      if (!running)
+      {
+         document.getElementById("mess").innerHTML ="请单击 New Game 开始新游戏！";
+         return;
+      }
+      var index= parseInt(d.id.charAt(1));
+      var srcColor=blocks[0];
+      var destColor=options[index];
+      if (srcColor==destColor)
+      {
+          document.getElementById("mess").innerHTML ="Steps:"+steps+"/35  未进行颜色改变，无效单击！";
+          return;
+      }
+      var queue=[];
+      var front=0;
+      var rear=0;
+      queue[rear++]=0;
+      while (front<rear)
+      {
+          var k=queue[front++];
+          blocks[k]=destColor;
+          if (k%10!=9 && blocks[k+1]==srcColor)  // 右边的方格
+                queue[rear++]=k+1;
+          if (k<90 && blocks[k+10]==srcColor)    // 下边的方格
+             queue[rear++]=k+10;
+      }
+      draw();
+      steps++;
+      document.getElementById("mess").innerHTML ="Steps:"+steps+"/35";
+      if (checkWin())
+      {
+           running=false;
+           ctx.font = '50px PingFang SC';
+           ctx.fillStyle = "red";
+           ctx.textAlign = 'center';
+           ctx.baseline = 'middle';
+           ctx.fillText('You Win！',canvas.width/2, canvas.height/2);
+      }
+      else
+      {
+          if (steps==35)
+          {
+             running=false;
+             ctx.font = '50px PingFang SC';
+             ctx.fillStyle = "black";
+             ctx.textAlign = 'center';
+             ctx.baseline = 'middle';
+             ctx.fillText('You  failed！',canvas.width/2, canvas.height/2);
+          }
+      }
+   }
+   function checkWin()
+   {
+      for (var i=1;i<blocks.length;i++)
+         if (blocks[i]!=blocks[0])  return false;
+      return true;
+   }
+   newGame();
+</script>
+</body>
+</html>
