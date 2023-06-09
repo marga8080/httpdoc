@@ -88,16 +88,23 @@ function render(level) {
     for (let i = 0; i < size; i++) {
         let group = (num[i] + 1);
         let imgName = theme.format.replace("@", group);
-        let imgPath = "./img/" + imgName;
+        let imgSrc = "./img/" + imgName;
         $("#img" + i).css({
             "height": w + "px",
             "width": w + "px",
         });
-        $("#img" + i).attr("img", imgPath);
+        $("#img" + i).attr("img-src", imgSrc);
         $("#img" + i).attr("group", group);
         $("#img" + i).attr("index", i);
         $("#img" + i).attr("size", size);
+        preload(imgSrc)
     }
+}
+
+// 预加载图片
+function preload(src) {
+    const img1 = new Image();//创建一个img对象
+    img1.src = src//图片地址
 }
 
 function flip(thisObj) {
@@ -111,7 +118,7 @@ function flip(thisObj) {
         // 把上一次的显示出来
         lastObj.attr("show", "true");
         lastObj.css({
-            "background": "url('"+lastObj.attr("img")+"') no-repeat",
+            "background": "url('"+lastObj.attr("img-src")+"') no-repeat",
             "background-size": "100% 100%",
         })
         lastFlipIndex = null;
@@ -130,7 +137,7 @@ function flip(thisObj) {
     }
     // 显示出来
     $(thisObj).css({
-        "background": "url('"+$(thisObj).attr("img")+"') no-repeat",
+        "background": "url('"+$(thisObj).attr("img-src")+"') no-repeat",
         "background-size": "100% 100%",
     })
     // 翻面次数
