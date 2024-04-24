@@ -27,6 +27,8 @@ function getHoliday2024() {
     for (var i = 0; i < 5; i++) { //劳动节
         day.push(20240501 + i);
     }
+    day.push(20240608); //端午节
+    day.push(20240609); //端午节
     day.push(20240610); //端午节
     for (var i = 0; i < 3; i++) { //中秋节
         day.push(20240915 + i);
