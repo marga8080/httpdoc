@@ -128,37 +128,35 @@
   float: right;
 }
 
-.content[data-v-81a892c4] {
-  /*white-space: nowrap;*/
+.content[data-v-5fd047da] {
+  display: flex;
+  justify-content: center;
   overflow-x: auto;
-  padding: 0 10px;
   font-size: 20px;
   line-height: 42px;
+  text-align: left;
 }
-.content rt[data-v-81a892c4] {
+.content .article[data-v-5fd047da] {
+  max-width: 960px;
+  /* 或者你需要的最大宽度 */
+  margin: 0 auto;
+  /* 文章居中 */
+  padding: 0 0 20px 0;
+  /*white-space: nowrap;*/
+}
+.content rt[data-v-5fd047da] {
   font-size: 14px;
   width: 42px;
   color: grey;
 }
-.content .word[data-v-81a892c4] {
+.content .word[data-v-5fd047da] {
   word-spacing: 4px;
 }
-/*.art {*/
-/*    margin-top: 0pt;*/
-/*    margin-bottom: 0pt;*/
-/*    text-align: justify;*/
-/*    margin-left: 0pt;*/
-/*    line-height: normal;*/
-/*    font-size: 16pt;*/
-/*    font-weight: normal;*/
-/*    text-indent: 32pt;*/
-/*    visibility: visible;*/
-/*}*/
-.word-enter-active[data-v-81a892c4],
-.word-leave-active[data-v-81a892c4] {
-  animation: enter-81a892c4 0.5s ease-out forwards;
+.word-enter-active[data-v-5fd047da],
+.word-leave-active[data-v-5fd047da] {
+  animation: enter-5fd047da 0.5s ease-out forwards;
 }
-@keyframes enter-81a892c4 {
+@keyframes enter-5fd047da {
 0% {
     opacity: 0;
     transform: translateY(-20px);
@@ -169,7 +167,7 @@
 }
 }
 /* 隐藏水平滚动条 */
-[data-v-81a892c4]::-webkit-scrollbar {
+[data-v-5fd047da]::-webkit-scrollbar {
   display: none;
 }
 
