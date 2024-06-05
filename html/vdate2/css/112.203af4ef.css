@@ -128,35 +128,34 @@
   float: right;
 }
 
-.content[data-v-7f028a15] {
+.content {
   display: flex;
   justify-content: center;
-  overflow-x: auto;
-  font-size: 20px;
+  font-size: 21px;
   line-height: 42px;
   text-align: left;
 }
-.content .article[data-v-7f028a15] {
+.content .article {
   max-width: 960px;
   /* 或者你需要的最大宽度 */
   margin: 0 auto;
   /* 文章居中 */
   padding: 0 0 20px 0;
+  /*overflow-x: auto;*/
   /*white-space: nowrap;*/
 }
-.content rt[data-v-7f028a15] {
+.content rt {
+  display: ruby-text;
   font-size: 14px;
   width: 42px;
   color: grey;
+  text-align: start;
 }
-.content .word[data-v-7f028a15] {
-  word-spacing: 4px;
+.word-enter-active,
+.word-leave-active {
+  animation: enter 0.5s ease-out forwards;
 }
-.word-enter-active[data-v-7f028a15],
-.word-leave-active[data-v-7f028a15] {
-  animation: enter-7f028a15 0.5s ease-out forwards;
-}
-@keyframes enter-7f028a15 {
+@keyframes enter {
 0% {
     opacity: 0;
     transform: translateY(-20px);
@@ -167,7 +166,7 @@
 }
 }
 /* 隐藏水平滚动条 */
-[data-v-7f028a15]::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
 }
 
