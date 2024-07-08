@@ -595,28 +595,53 @@ input[type="number"][data-v-45422200] {
   padding: 0 20px;
 }
 
-.content[data-v-5daa5a85] {
+.content[data-v-4d5e0c08] {
   text-align: left;
+  padding: 0 20px;
   margin: 0;
 }
-.content .c-area[data-v-5daa5a85] {
+.content .c-area[data-v-4d5e0c08] {
   margin-top: 20px;
   display: flex;
 }
-.content .c-area ul[data-v-5daa5a85] {
+.content .c-area ul[data-v-4d5e0c08] {
   padding: 0;
   margin: 0;
 }
-.content .c-area .table[data-v-5daa5a85] {
+.content .c-area .table[data-v-4d5e0c08] {
   display: table;
   border-spacing: 1px;
   margin: auto;
 }
-.content .c-area .table li[data-v-5daa5a85] {
+.content .c-area .table li[data-v-4d5e0c08] {
   display: table-row;
 }
-.content .c-area .table div[data-v-5daa5a85] {
+.content .c-area .table div[data-v-4d5e0c08] {
   display: table-cell;
   text-align: center;
+}
+.content .btn[data-v-4d5e0c08] {
+  background-color: #1AB6FF;
+  color: white;
+  border: 0;
+  height: 42px;
+  width: 150px;
+  font-size: 18px;
+}
+.content .btn[data-v-4d5e0c08]:hover {
+  background-color: #1B85EE;
+}
+.content .incorrect[data-v-4d5e0c08]:after {
+  content: '\2716';
+  color: red;
+  animation: fadeOut-4d5e0c08 1s forwards;
+}
+@keyframes fadeOut-4d5e0c08 {
+from {
+    opacity: 1;
+}
+to {
+    opacity: 0;
+}
 }
 
