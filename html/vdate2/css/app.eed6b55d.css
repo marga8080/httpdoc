@@ -220,23 +220,23 @@ ol[data-v-8b54fc04] {
   border: 3px solid #FFBB00;
 }
 
-.info[data-v-b9d50cdc] {
+.info[data-v-07e94542] {
   text-align: left;
   padding: 0 10px;
 }
-.info .yl[data-v-b9d50cdc] {
+.info .yl[data-v-07e94542] {
   position: relative;
   height: 22px;
 }
-.info .yl .ymd[data-v-b9d50cdc] {
+.info .yl .ymd[data-v-07e94542] {
   font-size: 18px;
 }
-.info .yl .dif[data-v-b9d50cdc] {
+.info .yl .dif[data-v-07e94542] {
   color: grey;
   font-size: 14px;
   margin-left: 5px;
 }
-.info .yl .xiz[data-v-b9d50cdc] {
+.info .yl .xiz[data-v-07e94542] {
   position: absolute;
   top: 0;
   right: 0px;
@@ -246,81 +246,85 @@ ol[data-v-8b54fc04] {
   border-radius: 4px;
   color: darkred;
 }
-.info .nl[data-v-b9d50cdc] {
+.info .nl[data-v-07e94542] {
   text-align: center;
 }
-.info .nl .lmd[data-v-b9d50cdc] {
+.info .nl .lmd[data-v-07e94542] {
   color: crimson;
-  font-size: 40px;
+  font-size: 42px;
 }
-.info .nl .jq[data-v-b9d50cdc] {
+.info .nl .jq[data-v-07e94542] {
   color: crimson;
-  font-size: 16px;
+  font-size: 17px;
 }
-.info .nl .ly[data-v-b9d50cdc] {
+.info .nl .ly[data-v-07e94542] {
   margin-right: 10px;
+  font-size: 18px;
 }
-.info .rq[data-v-b9d50cdc] {
+.info .nl .ld[data-v-07e94542] {
+  font-size: 18px;
+}
+.info .rq[data-v-07e94542] {
   display: grid;
   grid-template-columns: 80px 1fr;
   grid-gap: 1px;
 }
-.info .rq .item1[data-v-b9d50cdc] {
+.info .rq .item1[data-v-07e94542] {
   grid-row: span 2;
   font-size: 68px;
   text-align: center;
   color: crimson;
   margin-right: 5px;
 }
-.info .rq .item2[data-v-b9d50cdc] {
+.info .rq .item2[data-v-07e94542] {
   padding-top: 10px;
 }
-.info .rq .item2 .nl .lmd[data-v-b9d50cdc] {
+.info .rq .item2 .nl .lmd[data-v-07e94542] {
   font-size: 22px;
 }
-.info .rq .item2 .nl .jq[data-v-b9d50cdc] {
+.info .rq .item2 .nl .jq[data-v-07e94542] {
   font-size: 22px;
   color: crimson;
   margin-left: 10px;
 }
-.info .rq .item3[data-v-b9d50cdc] {
+.info .rq .item3[data-v-07e94542] {
   margin-top: -10px;
   color: darkgray;
 }
-.info .rq .item3 .ly[data-v-b9d50cdc] {
+.info .rq .item3 .ly[data-v-07e94542] {
   margin-right: 5px;
 }
-.info .ss[data-v-b9d50cdc] {
+.info .ss[data-v-07e94542] {
   font-size: 18px;
   text-align: center;
 }
-.info .ss .tt[data-v-b9d50cdc] {
+.info .ss .tt[data-v-07e94542] {
   color: crimson;
   margin-right: 10px;
 }
-.info .yj[data-v-b9d50cdc] {
+.info .yj[data-v-07e94542] {
   padding-top: 10px;
 }
-.info .yj .yjy[data-v-b9d50cdc] {
+.info .yj .yjy[data-v-07e94542] {
   font-size: 28px;
   color: #009900;
   margin-right: 2px;
 }
-.info .yj .yjj[data-v-b9d50cdc] {
+.info .yj .yjj[data-v-07e94542] {
   font-size: 28px;
   color: #e02d2d;
   margin-right: 2px;
 }
-.info .zsfw[data-v-b9d50cdc],
-.info .scjx[data-v-b9d50cdc],
-.info .pzbj[data-v-b9d50cdc] {
+.info .zsfw[data-v-07e94542],
+.info .scjx[data-v-07e94542],
+.info .pzbj[data-v-07e94542] {
   text-align: center;
   font-size: 18px;
 }
-.info .cur-class[data-v-b9d50cdc] {
+.info .cur-class[data-v-07e94542] {
   color: #e02d2d;
 }
-.info hr[data-v-b9d50cdc] {
+.info hr[data-v-07e94542] {
   border-top: 1px solid #f7d5b2;
   border-bottom: none;
 }
