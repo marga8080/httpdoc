@@ -666,7 +666,7 @@ to {
 }
 }
 
-.circle-button[data-v-47014c06] {
+.circle-button[data-v-487ecae0] {
   background-color: #67D28E;
   border: none;
   color: white;
@@ -677,11 +677,40 @@ to {
   width: 120px;
   height: 120px;
 }
-.circle-button[data-v-47014c06]:hover {
+.circle-button[data-v-487ecae0]:hover {
   background-color: #0D9976;
 }
-.circle-button[data-v-47014c06]:active {
+.circle-button[data-v-487ecae0]:active {
   background-color: #0D9976;
+}
+.num-wrapper[data-v-487ecae0] {
+  position: relative;
+  height: 60px;
+  overflow-y: hidden;
+  font-size: 45px;
+  margin-top: 110px;
+}
+.num-wrapper .num[data-v-487ecae0] {
+  top: 0;
+  left: 0;
+  position: relative;
+  line-height: 60px;
+}
+.fade-enter-active[data-v-487ecae0],
+.fade-leave-active[data-v-487ecae0] {
+  transition: all 0.2s ease-in;
+}
+.fade-enter[data-v-487ecae0],
+.fade-leave-to[data-v-487ecae0] {
+  opacity: 0;
+}
+.fade-enter[data-v-487ecae0],
+.fade-leave[data-v-487ecae0] {
+  transform: translateY(0);
+}
+.fade-enter-to[data-v-487ecae0],
+.fade-leave-to[data-v-487ecae0] {
+  transform: translateY(-30px);
 }
 
 .bd[data-v-1da8d1ec] {
